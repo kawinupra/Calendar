@@ -1,61 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+      
+    <meta charset="UTF-8" />
     <title>Fullcalendar 4</title>
 
-    <link rel="stylesheet" href="fullcalendar-4.4.0/core/main.css">
-    <link rel="stylesheet" href="fullcalendar-4.4.0/daygrid/main.css">
-    <link rel="stylesheet" href="fullcalendar-4.4.0/timegrid/main.css">
-    <link rel="stylesheet" href="fullcalendar-4.4.0/list//main.css">    
+    <link rel="stylesheet" href="fullcalendar-4.4.0/core/main.css" />
+    <link rel="stylesheet" href="fullcalendar-4.4.0/daygrid/main.css" />
+    <link rel="stylesheet" href="fullcalendar-4.4.0/timegrid/main.css" />
+    <link rel="stylesheet" href="fullcalendar-4.4.0/list//main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
 
-   
-    
-      <script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
-    
-      <script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
-    
-      <script src="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.js"></script>
-    <style type="text/css">
-    html,body{
-        background-color: rgba(247, 99, 111, 0.973);
-        margin:0;padding:0;
-        font-family:tahoma, "Microsoft Sans  Serif", sans-serif, Verdana;   
-        font-size:12px;
+    <script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
+
+    <script src="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var Calendar = FullCalendar.Calendar;
+        var Draggable = FullCalendarInteraction.Draggable;
+
+        var containerEl = document.getElementById("external-events");
+        var calendarEl = document.getElementById("calendar");
+        var checkbox = document.getElementById("drop-remove");
         
-    }
-    h1{
+
+        // initialize the external events
+        // -----------------------------------------------------------------
+
+        new Draggable(containerEl, {
+          itemSelector: ".fc-event",
+          eventData: function(eventEl) {
+            return {
+              title: eventEl.innerText
+            };
+          }
+        });
+
+        // initialize the calendar
+        // -----------------------------------------------------------------
+
+        var calendar = new Calendar(calendarEl, {
+          plugins: ["interaction", "dayGrid", "timeGrid"],
+          header: {
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay"
+          },
+          editable: true,
+          droppable: true, // this allows things to be dropped onto the calendar
+          drop: function(info) {
+            // is the "remove after drop" checkbox checked?
+            if (checkbox.checked) {
+              // if so, remove the element from the "Draggable Events" list
+              info.draggedEl.parentNode.removeChild(info.draggedEl);
+            }
+          }
+        });
+      });
+    </script>
+
+    <style type="text/css">
+      html,
+      body {
+        background-color: white(247, 99, 111, 0.973);
+        margin: 0;
+        padding: 0;
+        font-family: tahoma, "Microsoft Sans  Serif", sans-serif, Verdana;
+        font-size: 12px;
+      }
+      h1 {
         font-size: 100px;
         margin: 0 auto;
         padding: 0;
-    }
-	#calendar{
-		max-width: 100%;
-		margin: 0 auto;
-        font-size:13px;
-        
+        text-align: center;
+      }
+      #calendar {
+        max-width: 100%;
+        margin: 0 auto;
+        font-size: 13px;
+
         background-color: white;
-	}        
+      }
+
+      #external-events {
+        position:fixed;
+        z-index: 2;
+        top: 50px;
+        left: 20px;
+        width: 150px;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        background: pink;
+      }
+
+      .demo-topbar + #external-events {
+        /* will get stripped out */
+        top: 60px;
+      }
+
+      #external-events .fc-event {
+        margin: 1em 0;
+        cursor: move;
+      }
+
+      #calendar-container {
+        position: relative;
+        z-index: 1;
+        margin-left: 200px;
+      }
     </style>
-    
-</head>
-<body>
-<h1>Calendar</h1>
-<br><br>
-<div style="margin:auto;width:800px;">
- <div id='calendar'></div>
- </div>
+  </head>
 
-  
+  <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+               
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">To do List</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Grade Calculate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Subject Diagram</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="#">Objective</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="#">My Accounts</a>
+                            </li>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
-<script type="text/javascript" src="fullcalendar-4.4.0/core/main.js"></script>
-<script type="text/javascript" src="fullcalendar-4.4.0/core/locales/th.js"></script>
-<script type="text/javascript" src="fullcalendar-4.4.0/daygrid/main.js"></script>
-<script type="text/javascript" src="fullcalendar-4.4.0/timegrid/main.js"></script>
-<script type="text/javascript" src="fullcalendar-4.4.0/interaction/main.js"></script>
-<script type="text/javascript" src="fullcalendar-4.4.0/list/main.js"></script>
-<script type="text/javascript" src="fullcalendar-4.4.0/core/locales/th.js"></script>
-<script type="text/javascript" src="script-4.4.0.js"></script>            
-</body>
+                  </ul>
+                  <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                </div>
+              </nav>
+    <h1>Calendar</h1>
+    <br /><br />
+    <div style="margin:auto;width:800px;">
+      <div id="calendar"></div>
+    </div>
+
+    <div id="external-events">
+      <p>
+        <strong>Draggable Events</strong>
+      </p>
+      <div class="fc-event">My Event 1</div>
+      <div class="fc-event">My Event 2</div>
+      <div class="fc-event">My Event 3</div>
+      <div class="fc-event">My Event 4</div>
+      <div class="fc-event">My Event 5</div>
+      
+      <p>
+        <input type="checkbox" id="drop-remove" />
+        <label for="drop-remove">remove after drop</label>
+      </p>
+    </div>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/core/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/core/locales/th.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/daygrid/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/timegrid/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/interaction/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/list/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="fullcalendar-4.4.0/core/locales/th.js"
+    ></script>
+    <script type="text/javascript" src="script-4.4.0.js"></script>
+  </body>
 </html>
