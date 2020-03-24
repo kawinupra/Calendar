@@ -23,7 +23,7 @@ $(function() {
 
           if (!isNaN(date.valueOf())) { // valid?
             calendar.addEvent({
-              title: 'dynamic event',
+              title: prompt('Enter a name'),
               start: date,
               allDay: true
             });
