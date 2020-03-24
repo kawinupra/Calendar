@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      
     <meta charset="UTF-8" />
     <title>Fullcalendar 4</title>
-
     <link rel="stylesheet" href="fullcalendar-4.4.0/core/main.css" />
     <link rel="stylesheet" href="fullcalendar-4.4.0/daygrid/main.css" />
     <link rel="stylesheet" href="fullcalendar-4.4.0/timegrid/main.css" />
@@ -15,7 +13,95 @@
     <script src="https://unpkg.com/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
 
     <script src="https://unpkg.com/@fullcalendar/timegrid@4.4.0/main.min.js"></script>
+    <style>
+/* NAV BAR หัวเรื่อง */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #FFC0CB;
+}
 
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+
+    * {
+      box-sizing:border-box;
+    }
+    body{
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* style the header */
+    header{
+      background-color: white(235, 154, 204);
+      padding: 30px;
+      text-align: center;
+      font-size: 35px;
+      color:gray;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    /* create two columns/boxes that floats next to each other */
+    nav { 
+      float:right;
+      width: 30%;
+      height: 300px;
+      background #ccc;
+      padding: 20px;
+      
+    }
+/* style the list inside the menu */
+    nav1 ul{
+      list-style-type: none;
+      padding: 0;
+    }
+    araticle {
+      float:left;
+       padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+  height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: rgb(255, 104, 180);
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+    }
+    </style>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         var Calendar = FullCalendar.Calendar;
@@ -74,10 +160,10 @@
         font-size: 100px;
         margin: 0 auto;
         padding: 0;
-        text-align: center;
+        text-align: left;
       }
       #calendar {
-        max-width: 100%;
+        max-width: 70%;
         margin: 0 auto;
         font-size: 13px;
 
@@ -85,9 +171,10 @@
       }
 
       #external-events {
-        position:fixed;
+        position:fixed  ;
+        
         z-index: 2;
-        top: 50px;
+        top: 180px;
         left: 20px;
         width: 150px;
         padding: 0 10px;
@@ -114,64 +201,80 @@
   </head>
 
   <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-               
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-            
-                <div class="collapse navbar-collapse" id="navbarColor02">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <ul>
+          <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">To do List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Calendar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Grade Calculate</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Subject Diagram</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="#">Objective</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="#">My Accounts</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">To do List</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Calendar</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Grade Calculate</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Subject Diagram</a>
-                    </li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="#">Objective</a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link" href="#">My Accounts</a>
-                            </li>
-
-                  </ul>
-                  <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-                  </form>
+        </ul>
+    
+          </div>
+        </nav1>
+      <header>
+          <h1>CALENDAR</h1>
+        </header>
+        
+        <section>
+          <nav>
+            <ul>
+              <li><a href="#">London</a></li>
+              <li><a href="#">Paris</a></li>
+              <li><a href="#">Tokyo</a></li>
+            </ul>
+          </nav>
+          
+          <article>
+              <div style="margin:auto;width:800px;">
+                  <div id="calendar"></div>
                 </div>
-              </nav>
-    <h1>Calendar</h1>
+                <div id="external-events">
+                    <p>
+                      <strong>Draggable Events</strong>
+                    </p>
+                    <div class="fc-event">My Event 1</div>
+                    <div class="fc-event">My Event 2</div>
+                    <div class="fc-event">My Event 3</div>
+                    <div class="fc-event">My Event 4</div>
+                    <div class="fc-event">My Event 5</div>
+                    
+                    <p>
+                      <input type="checkbox" id="drop-remove" />
+                      <label for="drop-remove">remove after drop</label>
+                    </p>
+                  </div>
+            
+       
+          </article>
+        </section>
+        
+        <footer>
+          <p>Footer</p>
+        </footer>
+        
+    
     <br /><br />
     <div style="margin:auto;width:800px;">
       <div id="calendar"></div>
     </div>
 
-    <div id="external-events">
-      <p>
-        <strong>Draggable Events</strong>
-      </p>
-      <div class="fc-event">My Event 1</div>
-      <div class="fc-event">My Event 2</div>
-      <div class="fc-event">My Event 3</div>
-      <div class="fc-event">My Event 4</div>
-      <div class="fc-event">My Event 5</div>
-      
-      <p>
-        <input type="checkbox" id="drop-remove" />
-        <label for="drop-remove">remove after drop</label>
-      </p>
-    </div>
+    
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
